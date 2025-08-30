@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.game-area {
+  position: relative;
+  margin: 20px auto;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  overflow: hidden;
+}
+
+.score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-weight: bold;
+}
+
+.game-over {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 2px solid red;
+}
