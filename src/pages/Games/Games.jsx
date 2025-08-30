@@ -1,52 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
+import Avatar from "../../components/Avatar";
+import Star from "../../components/Star";
 
-import krytonite from "../../assets/images/krypto.jpg";
-
-import flyingHero from "../../assets/images/flyingHero.png";
-import standingHero from "../../assets/images/standingHero.png";
 const GAME_WIDTH = 1200;
 const GAME_HEIGHT = 600;
 const AVATAR_SIZE = 150; // Updated to match actual avatar size
 const FINISH_LINE = GAME_WIDTH - AVATAR_SIZE;
-
-// Avatar Component
-const Avatar = ({ x, y, move }) => {
-  return (
-    <div
-      className="absolute w-[150px] h-[150px] rounded-full"
-      style={{
-        left: x,
-        top: y, // Now properly uses the y prop
-        transform: move ? "rotate(-20deg)" : "none",
-        transition: "all 0.3s ease-in-out",
-      }}
-    >
-      <div className="w-full h-full object-fill rounded-full flex items-center justify-center text-6xl">
-        <img
-          src={move ? flyingHero : standingHero}
-          className="w-full h-full object-contain "
-        />{" "}
-      </div>
-    </div>
-  );
-};
-
-// Star Component
-const Star = ({ x, y }) => {
-  return (
-    <div
-      className="absolute rotate-180 w-[20px] h-auto"
-      style={{
-        left: x,
-        top: y,
-        width: 20,
-        height: 20,
-      }}
-    >
-      <img src={krytonite} className="w-full h-full object-contain" />
-    </div>
-  );
-};
 
 const Game = () => {
   const [avatarX, setAvatarX] = useState(50);
@@ -71,6 +30,7 @@ const Game = () => {
       if (nextX >= FINISH_LINE) {
         setGameState("won");
         setScore((prev) => prev + 10);
+        setAvatarX(50);
         return FINISH_LINE;
       }
       return nextX;
@@ -170,11 +130,10 @@ const Game = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4 w-full">
       <div
-        className="relative rounded-lg overflow-hidden bgImg"
+        className="relative rounded-lg overflow-hidden bgImg" // In game
         style={{
           width: GAME_WIDTH,
           height: GAME_HEIGHT,
-          // background: "linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460)",
         }}
         onClick={moveAvatar}
       >
@@ -202,14 +161,16 @@ const Game = () => {
         )}
 
         {gameState === "notStarted" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bgImg bg-opacity-50">
-            <h2 className="text-white text-4xl mb-6">🌟 Star Dodger!</h2>
+          <div className="absolute inset-0 flex flex-col items-center justify-center startImg bg-opacity-50">
+            <h2 className="text-white text-4xl mb-6">
+              🌟 Superman Sky Escape!
+            </h2>
             <p className="text-white text-xl mb-6">
               Click to move your hero to the finish line!
             </p>
             <button
               onClick={startGame}
-              className="px-8 py-4 bg-blue-600 text-white text-xl rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-red-600 text-yellow-500 text-xl font-bold rounded-full shadow-lg hover:from-blue-500 hover:to-red-500 transition-all"
             >
               Start Game
             </button>
@@ -217,14 +178,14 @@ const Game = () => {
         )}
 
         {gameState === "won" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bgImg bg-opacity-50">
+          <div className="absolute inset-0 flex flex-col items-center justify-center startImg bg-opacity-50">
             <h2 className="text-white text-4xl mb-4">🎉 Level Complete!</h2>
             <p className="text-white text-2xl mb-2 font-bold text-white p-2 rounded-md bg-yellow-500">
               Score: {score}
             </p>
             <button
               onClick={nextLevel}
-              className="px-8 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700 transition-colors"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-red-600 text-yellow-500 text-xl font-bold rounded-full shadow-lg hover:from-blue-500 hover:to-red-500 transition-all"
             >
               Next Level
             </button>
@@ -232,12 +193,14 @@ const Game = () => {
         )}
 
         {gameState === "over" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bgImg bg-opacity-50">
-            <h2 className="text-white text-4xl mb-4">💥 Game Over!</h2>
-            <p className="text-white text-2xl mb-6">Your Score: {score}</p>
+          <div className="absolute inset-0 flex flex-col items-center justify-center startImg bg-opacity-50">
+            <h2 className="text-white text-4xl mb-4">Game Over!</h2>
+            <p className="text-white text-2xl mb-2 font-bold text-white p-2 rounded-md bg-yellow-500">
+              Your Score: {score}
+            </p>
             <button
               onClick={restartGame}
-              className="px-8 py-4 bg-red-600 text-white text-xl rounded-lg hover:bg-red-700 transition-colors"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-red-600 text-yellow-500 text-xl font-bold rounded-full shadow-lg hover:from-blue-500 hover:to-red-500 transition-all"
             >
               Restart
             </button>

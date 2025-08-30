@@ -8,8 +8,8 @@ const Star = ({ x, y }) => {
       style={{
         left: x,
         top: y,
-        backgroundColor: "green",
-        boxShadow: "0 0 10px yellow",
+        width: 20,
+        height: 20,
       }}
     >
       <img src={krytonite} className="w-full h-full object-contain" />

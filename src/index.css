@@ -16,7 +16,13 @@
 @import "tailwindcss";
 
 .bgImg {
-  background: url("./assets/images/bg.webp") no-repeat;
+  background: url("./assets/images/bg.png") no-repeat;
+  background-size: 100% 120%;
+  background-position: center;
+}
+
+.startImg {
+  background: url("./assets/images/StartBg.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }
