@@ -67,7 +67,7 @@ const Game = () => {
     setMove(true);
 
     setAvatarX((prevX) => {
-      const nextX = prevX + 30;
+      const nextX = prevX + 100;
       if (nextX >= FINISH_LINE) {
         setGameState("won");
         setScore((prev) => prev + 10);
@@ -247,7 +247,7 @@ const Game = () => {
 
       <div className="mt-4 text-white text-center">
         <p>Click anywhere in the game area to move your hero!</p>
-        <p>Avoid the falling stars and reach the green finish line!</p>
+        <p>Avoid the falling kryptonite and reach the end!</p>
       </div>
     </div>
   );
